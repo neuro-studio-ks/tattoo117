@@ -147,7 +147,7 @@ form.addEventListener('submit', (e) => {
 
   const name = form.elements.name.value.trim();
   const phone = form.elements.phone.value.trim();
-  const idea = form.elements.idea.value.trim() || '—';
+  const idea = form.elements.idea.value.trim() || '-';
 
   const text = [
     'Заявка с сайта тату-студии «117»',
