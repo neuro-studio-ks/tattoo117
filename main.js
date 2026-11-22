@@ -132,9 +132,10 @@ const ctaObserver = new IntersectionObserver(
 
 ctaObserver.observe(heroBand);
 
-// Форма записи: заглушка без бэкенда, честное поведение
+// Форма записи: собираем заявку и открываем WhatsApp с готовым сообщением
 const form = document.getElementById('bookingForm');
 const status = document.getElementById('formStatus');
+const WA_NUMBER = '79998673936';
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -144,6 +145,19 @@ form.addEventListener('submit', (e) => {
     return;
   }
 
-  status.textContent = 'Заявка сформирована (заглушка: отправка на сервер пока не подключена).';
+  const name = form.elements.name.value.trim();
+  const phone = form.elements.phone.value.trim();
+  const idea = form.elements.idea.value.trim() || '—';
+
+  const text = [
+    'Заявка с сайта тату-студии «117»',
+    'Имя: ' + name,
+    'Телефон: ' + phone,
+    'Идея тату: ' + idea
+  ].join('\n');
+
+  window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text), '_blank');
+
+  status.textContent = 'Открыли WhatsApp с готовой заявкой - нажмите «Отправить».';
   form.reset();
 });
